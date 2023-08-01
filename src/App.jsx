@@ -1,8 +1,10 @@
+import SearchComp from "./components/search";
+
 function App() {
   return (
-    <>
-      <h3>Hello World!</h3>
-    </>
+    <div className="h-screen flex flex-col w-100">
+      <SearchComp />
+    </div>
   );
 }
 
