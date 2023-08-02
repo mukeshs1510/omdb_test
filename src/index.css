@@ -9,7 +9,8 @@
 
   color-scheme: light dark;
   /* color: rgba(255, 255, 255, 0.87); */
-  background-color: #242424;
+  /* background-color: #242424; */
+  background-color: white;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -43,8 +44,8 @@ a:hover {
   height: 64px;
   margin: 8px;
   border-radius: 50%;
-  border: 6px solid #fff;
-  border-color: #fff transparent #fff transparent;
+  border: 6px solid #600fec;
+  border-color: #600fec transparent #600fec transparent;
   animation: loading-spinner-anim 1.2s linear infinite;
 }
 @keyframes loading-spinner-anim {
