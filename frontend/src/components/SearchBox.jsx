@@ -12,8 +12,6 @@ const SearchComp = () => {
   const [totalResults, setTotalResults] = useState(0);
   const [errorMsg, setErrorMsg] = useState("");
 
-  const API_KEY = "b74e254a";
-
   const debouncedSearch = debounce(
     (searchQuery) => searchMovie(searchQuery),
     500
