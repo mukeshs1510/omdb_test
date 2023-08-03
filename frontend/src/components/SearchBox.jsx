@@ -30,7 +30,7 @@ const SearchComp = () => {
       .get(`apis/movies/search/${searchQuery}/${defaultSearchpage}`)
       .then((res) => {
         setIsLoading(false);
-
+        // if (searchPage == 1) {
         if (res.data.data.Search == undefined) {
           setSearchResult([]);
           setErrorMsg(res.data.data.Error);
@@ -38,7 +38,19 @@ const SearchComp = () => {
           setSearchResult(res.data.data.Search);
           setFavoritesMovies(res.data.data.favorites);
           setTotalResults(+res.data.data.totalResults);
+          console.log(+res.data.data.totalResults);
         }
+        // } else {
+        //   console.log("pagi");
+        //   if (res.data.data.Search == undefined) {
+        //     setSearchResult([]);
+        //     setErrorMsg(res.data.data.Error);
+        //   } else {
+        //     setSearchResult([...searchResult, res.data.data.Search]);
+        //     console.log(res.data.data.Search[0].Title);
+        //     setTotalResults(+res.data.data.totalResults - 10);
+        //   }
+        // }
         // console.log(res.data.data.Error);
       })
       .catch((error) => {
@@ -59,7 +71,7 @@ const SearchComp = () => {
 
   // const processPagination = () => {
   //   setDefaultSearchpage(defaultSearchpage + 1);
-  //   searchMovie(searchQuery);
+  //   searchMovie(searchQuery, defaultSearchpage + 1);
   // };
 
   return (
@@ -123,6 +135,14 @@ const SearchComp = () => {
             />
           ))}
       </div>
+      {/* {totalResults > 10 && (
+        <button
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          onClick={processPagination}
+        >
+          Load More
+        </button>
+      )} */}
     </>
   );
 };
