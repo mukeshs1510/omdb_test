@@ -4,7 +4,7 @@ import App from "./App.jsx";
 import "./index.css";
 import axios from "axios";
 
-axios.defaults.baseURL = "https://www.omdbapi.com";
+axios.defaults.baseURL = "http://localhost:8000/";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>

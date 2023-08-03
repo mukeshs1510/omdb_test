@@ -11,6 +11,7 @@ const SearchComp = () => {
   const [defaultSearchpage, setDefaultSearchpage] = useState(1); // to add pagination
   const [totalResults, setTotalResults] = useState(0);
   const [errorMsg, setErrorMsg] = useState("");
+  const [favoritesMovies, setFavoritesMovies] = useState([]);
 
   const debouncedSearch = debounce(
     (searchQuery) => searchMovie(searchQuery),
@@ -21,21 +22,24 @@ const SearchComp = () => {
     setErrorMsg("");
     if (searchQuery == "") {
       setSearchResult([]);
+      setTotalResults(0);
       return;
     }
     setIsLoading(true);
     await axios
-      .get(`?apikey=${API_KEY}&s=${searchQuery}&page=${defaultSearchpage}`)
+      .get(`apis/movies/search/${searchQuery}/${defaultSearchpage}`)
       .then((res) => {
         setIsLoading(false);
 
-        if (res.data.Search == undefined) {
+        if (res.data.data.Search == undefined) {
           setSearchResult([]);
-          setErrorMsg(res.data.Error);
+          setErrorMsg(res.data.data.Error);
         } else {
-          setSearchResult(res.data.Search);
+          setSearchResult(res.data.data.Search);
+          setFavoritesMovies(res.data.data.favorites);
+          setTotalResults(+res.data.data.totalResults);
         }
-        console.log(res.data.Error);
+        // console.log(res.data.data.Error);
       })
       .catch((error) => {
         setIsLoading(false);
@@ -52,6 +56,11 @@ const SearchComp = () => {
     setSearchQuery(event.target.value);
     callBackDebouce(event.target.value);
   };
+
+  // const processPagination = () => {
+  //   setDefaultSearchpage(defaultSearchpage + 1);
+  //   searchMovie(searchQuery);
+  // };
 
   return (
     <>
@@ -84,7 +93,7 @@ const SearchComp = () => {
             </div>
 
             <input
-              className="peer h-full w-full outline-none text-sm text-gray-700 pr-2"
+              className="bg-white h-full w-full outline-none text-sm text-gray-700 pr-2"
               type="text"
               id="search"
               value={searchQuery}
@@ -110,6 +119,7 @@ const SearchComp = () => {
               title={movie.Title}
               year={movie.Year}
               img={movie.Poster}
+              fav={favoritesMovies.indexOf(movie.imdbID) > -1}
             />
           ))}
       </div>
