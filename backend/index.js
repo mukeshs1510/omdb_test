@@ -13,5 +13,8 @@ app.use("/apis/movies", movieRouter);
 app.listen(APP_PORT, () => {
   console.log("Server running: " + APP_PORT);
 });
+app.get('/', (req, res) => {
+  res.send('Hey this is my API running on versel🥳')
+})
 module.exports = app;
 // app.listen();
