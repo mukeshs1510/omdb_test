@@ -6,12 +6,15 @@ const movieRouter = require("./apis/movies/movie.router");
 const app = express();
 app.use(express.json());
 
-let APP_PORT = 4000;
+const APP_PORT = 4000;
 app.use(cors());
 app.use("/apis/movies", movieRouter);
 
 app.listen(APP_PORT, () => {
-  console.log("Server running: " + process.env.APP_PORT);
+  console.log("Server running: " + APP_PORT);
 });
-
+app.get('/', (req, res) => {
+  res.send('Hey this is my API running on versel🥳')
+})
+module.exports = app;
 // app.listen();
