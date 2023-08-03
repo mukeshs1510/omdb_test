@@ -6,7 +6,7 @@ const movieRouter = require("./apis/movies/movie.router");
 const app = express();
 app.use(express.json());
 
-APP_PORT = 8000;
+let APP_PORT = 4000;
 app.use(cors());
 app.use("/apis/movies", movieRouter);
 
