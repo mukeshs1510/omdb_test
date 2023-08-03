@@ -11,7 +11,7 @@ app.use(cors());
 app.use("/apis/movies", movieRouter);
 
 app.listen(APP_PORT, () => {
-  console.log("Server running: " + process.env.APP_PORT);
+  console.log("Server running: " + APP_PORT);
 });
 
 // app.listen();
