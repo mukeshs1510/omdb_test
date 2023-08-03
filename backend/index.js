@@ -13,5 +13,5 @@ app.use("/apis/movies", movieRouter);
 app.listen(APP_PORT, () => {
   console.log("Server running: " + APP_PORT);
 });
-
+module.exports = app;
 // app.listen();
